@@ -15,5 +15,11 @@ namespace Intro_ASPNetMVC.Controllers
         {
             return Content("El nombre del cliente es: " + nombre);
         }
+
+        // GET: Redireccionar
+        public ActionResult Redireccionar()
+        {
+            return RedirectToAction("ListadoProveedores", "Proveedores");
+        }
     }
 }
