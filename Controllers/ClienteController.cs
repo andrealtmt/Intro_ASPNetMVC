@@ -32,5 +32,29 @@ namespace Intro_ASPNetMVC.Controllers
         {
             return View(listaClientes);
         }
+
+        // GET: Clientes/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Clientes/Create
+        public IActionResult Create(Cliente cliente)
+        {
+            try
+            {
+                // agregar cliente a la lista
+                listaClientes.Add(cliente);
+                // redirigir a la vista de listado de clientes
+                return RedirectToAction("ListadoClientes");
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                ModelState.AddModelError("", "Error al crear el cliente: " + ex.Message);
+                return View(cliente);
+            }
+        }
     }
 }

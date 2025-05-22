@@ -32,5 +32,26 @@ namespace Intro_ASPNetMVC.Controllers
         {
             return View(listaClientes);
         }
+
+        // GET: Clientes/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Clientes/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                cliente.Id = listaClientes.Count + 1;
+                cliente.FechaAlta = DateTime.Now;
+                listaClientes.Add(cliente);
+                return RedirectToAction(nameof(ListadoClientes));
+            }
+            return View(cliente);
+        }
     }
 }
